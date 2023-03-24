@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+    <style> 
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      label {
+        margin-top: 20px;
+      }
+      input {
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 4px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+      button[type="submit"] {
+        background-color: #13cc60;
+        color: white;
+        padding: 10px 20px;
+      }
+      input:invalid {
+        border-color: rgb(219, 32, 32);
+      }
+      input:valid {
+        border-color: #33da00;
+      }
+      #acceptTerms {
+        margin-top: 10px;
+        margin-bottom: -20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="user-form">
+      <label for="name">Name</label>
+      <input required type="text" id="name" name="name">
+     
+      <label for="email">Email</label>
+      <input required type="email" id="email" name="email">
+     
+      <label for="password">Password</label>
+      <input required type="password" id="password" name="password">
+     
+      <label for="dob">Date of Birth</label>
+      <input required type="date" id="dob" name="dob">
+     
+      <input type="checkbox" id="acceptTerms" name="acceptTerms">
+      <label required for="acceptTerms">Accept Terms & Conditions</label>
+     
+      <button type="submit">Submit</button>
+    </form>
+    <div class="divide-y divide-gray-300/50" id="user-entries"></div>
+    <script src="index.js"></script>
+  </body>
+</html>
