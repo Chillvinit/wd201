@@ -8,15 +8,18 @@ const todoList = () => {
   }
 
   const overdue = () => {
-    return all.filter(item => !item.completed && item.dueDate < today)
+    const today = new Date()
+    return all.filter(item => !item.completed && new Date(item.dueDate) < today)
   }
 
   const dueToday = () => {
-    return all.filter(item => !item.completed && item.dueDate === today)
+    const today = new Date()
+    return all.filter(item => !item.completed && new Date(item.dueDate).toDateString() === today.toDateString())
   }
 
   const dueLater = () => {
-    return all.filter(item => !item.completed && item.dueDate > today)
+    const today = new Date()
+    return all.filter(item => !item.completed && new Date(item.dueDate) > today)
   }
 
   const toDisplayableList = (list) => {
@@ -24,7 +27,7 @@ const todoList = () => {
     for (let item of list) {
       let checkbox = item.completed ? "[x]" : "[ ]"
       let title = item.title
-      let dueDate = item.dueDate !== today ? " " + item.dueDate : ""
+      let dueDate = item.dueDate !== today.toISOString().split("T")[0] ? " " + item.dueDate : ""
       displayableList += `${checkbox} ${title}${dueDate}\n`
     }
     return displayableList
@@ -65,8 +68,6 @@ todos.add({ title: 'Pay rent', dueDate: today, completed: true })
 todos.add({ title: 'Service Vehicle', dueDate: today, completed: false })
 todos.add({ title: 'File taxes', dueDate: tomorrow, completed: false })
 todos.add({ title: 'Pay electric bill', dueDate: tomorrow, completed: false })
-
-todos.markAsComplete(0) // Mark 'Submit assignment' as complete
 
 console.log("My Todo-list\n")
 
