@@ -3,9 +3,8 @@ const fs = require("fs");
 
 const homeContent = fs.readFileSync("home.html");
 const projectContent = fs.readFileSync("project.html");
-const registrationContent = fs.readFileSync("registration.html"); // added this line to read registration.html
+const registrationContent = fs.readFileSync("registration.html");
 
-// Get the port number 
 const args = process.argv.slice(2);
 const port = args.includes('--port') ? parseInt(args[args.indexOf('--port') + 1]) : 5000;
 
@@ -16,7 +15,7 @@ http.createServer((request, response) => {
     case "/project":
       response.write(projectContent);
       break;
-    case "/registration": // added this case 
+    case "/registration":
       response.write(registrationContent);
       break;
     default:
