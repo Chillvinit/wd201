@@ -1,32 +1,50 @@
 const http = require("http");
 const fs = require("fs");
 
-const homeContent = fs.readFileSync("./home.html", "utf-8"); 
-const projectContent = fs.readFileSync("./project.html", "utf-8"); 
-const registrationContent = fs.readFileSync("./registration.html", "utf-8"); 
+let args = require("minimist");
+let port = args(process.argv)["port"];
+let homeContent = "";
+let projectContent = "";
+let registrationContent = "";
 
-const args = process.argv.slice(2);
-const port = args.includes('--port') ? parseInt(args[args.indexOf('--port') + 1]) : 5050;
-
-http.createServer((request, response) => {
-  let url = request.url;
-  response.writeHead(200, { "Content-Type": "text/html" });
-  switch (url) {
-    case "/project":
-      response.write(projectContent.replace(/href="\/registration"/g, 'href="/registration"')); 
-      break;
-    case "/registration":
-      response.write(registrationContent);
-      break;
-    default:
-      response.write(homeContent.replace(/href="\/project"/g, 'href="./project"')); 
-      break;
+fs.readFile("home.html", (err, home) => {
+  if (err) {
+    throw err;
   }
-  response.end();
-}).listen(port, (error) => {
-  if (error) {
-    console.log("Error starting server:", error);
-  } else {
-    console.log(`Server listening on port ${port}`);
-  }
+  homeContent = home;
 });
+
+fs.readFile("project.html", (err, project) => {
+  if (err) {
+    throw err;
+  }
+  projectContent = project;
+});
+
+fs.readFile("registration.html", (err, registration) => {
+  if (err) {
+    throw err;
+  }
+  registrationContent = registration;
+});
+
+http
+  .createServer((request, response) => {
+    let url = request.url;
+    response.writeHeader(200, { "Content-Type": "text/html" });
+    switch (url) {
+      case "/project":
+        response.write(projectContent);
+        response.end();
+        break;
+      case "/registration":
+        response.write(registrationContent);
+        response.end();
+        break;
+      default:
+        response.write(homeContent);
+        response.end();
+        break;
+    }
+  })
+  .listen(port);
