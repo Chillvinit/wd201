@@ -6,7 +6,7 @@ const projectContent = fs.readFileSync("./project.html", "utf-8");
 const registrationContent = fs.readFileSync("./registration.html", "utf-8"); 
 
 const args = process.argv.slice(2);
-const port = args.includes('--port') ? parseInt(args[args.indexOf('--port') + 1]) : 5000;
+const port = args.includes('--port') ? parseInt(args[args.indexOf('--port') + 1]) : 5050;
 
 http.createServer((request, response) => {
   let url = request.url;
