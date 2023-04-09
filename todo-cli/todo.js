@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const todoList = () => {
   all = []
   const add = (todoItem) => {
@@ -23,11 +24,11 @@ const todoList = () => {
   }
 
   const toDisplayableList = (list) => {
-    let displayableList = ""
-    for (let item of list) {
-      let checkbox = item.completed ? "[x]" : "[ ]"
-      let title = item.title
-      let dueDate = item.dueDate !== today.toISOString().split("T")[0] ? " " + item.dueDate : ""
+    let displayableList = ''
+    for (const item of list) {
+      const checkbox = item.completed ? '[x]' : '[ ]'
+      const title = item.title
+      const dueDate = item.dueDate !== today.toISOString().split('T')[0] ? ' ' + item.dueDate : ''
       displayableList += `${checkbox} ${title}${dueDate}\n`
     }
     return displayableList
@@ -41,17 +42,17 @@ const todoList = () => {
     dueToday,
     dueLater,
     toDisplayableList
-  };
-};
+  }
+}
 
 // ####################################### #
 // DO NOT CHANGE ANYTHING BELOW THIS LINE. #
 // ####################################### #
 
-const todos = todoList();
+const todos = todoList()
 
 const formattedDate = d => {
-  return d.toISOString().split("T")[0]
+  return d.toISOString().split('T')[0]
 }
 
 var dateToday = new Date()
@@ -69,22 +70,22 @@ todos.add({ title: 'Service Vehicle', dueDate: today, completed: false })
 todos.add({ title: 'File taxes', dueDate: tomorrow, completed: false })
 todos.add({ title: 'Pay electric bill', dueDate: tomorrow, completed: false })
 
-console.log("My Todo-list\n")
+console.log('My Todo-list\n')
 
-console.log("Overdue")
+console.log('Overdue')
 var overdues = todos.overdue()
 var formattedOverdues = todos.toDisplayableList(overdues)
 console.log(formattedOverdues)
-console.log("\n")
+console.log('\n')
 
-console.log("Due Today")
-let itemsDueToday = todos.dueToday()
-let formattedItemsDueToday = todos.toDisplayableList(itemsDueToday)
+console.log('Due Today')
+const itemsDueToday = todos.dueToday()
+const formattedItemsDueToday = todos.toDisplayableList(itemsDueToday)
 console.log(formattedItemsDueToday)
-console.log("\n")
+console.log('\n')
 
-console.log("Due Later")
-let itemsDueLater = todos.dueLater()
-let formattedItemsDueLater = todos.toDisplayableList(itemsDueLater)
+console.log('Due Later')
+const itemsDueLater = todos.dueLater()
+const formattedItemsDueLater = todos.toDisplayableList(itemsDueLater)
 console.log(formattedItemsDueLater)
-console.log("\n\n")
+console.log('\n\n')
