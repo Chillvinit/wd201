@@ -4,10 +4,8 @@ const { all, markAsComplete, add, overdue, dueToday, dueLater, toDisplayableList
 
 describe('Todolist Test Suite', () => {
   beforeEach(() => {
-    // Reset the all array before each test
     all.length = 0
 
-    // Add a test todo item
     add({
       title: 'Test todo',
       completed: false,
@@ -32,7 +30,6 @@ describe('Todolist Test Suite', () => {
   })
 
   test('should retrieve overdue items', () => {
-    // Add a todo item with a past due date
     add({
       title: 'Overdue todo',
       completed: false,
@@ -51,7 +48,6 @@ describe('Todolist Test Suite', () => {
   })
 
   test('should retrieve due later items', () => {
-    // Add a todo item with a future due date
     add({
       title: 'Later todo',
       completed: false,
