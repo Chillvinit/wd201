@@ -1,32 +1,38 @@
 /* eslint-disable no-undef */
 const todoList = () => {
-  all = []
+  const all = []
+
+  const formattedDate = (date) => {
+    const year = date.getFullYear()
+    const month = ('0' + (date.getMonth() + 1)).slice(-2)
+    const day = ('0' + date.getDate()).slice(-2)
+    return `${year}-${month}-${day}`
+  }
+
   const add = (todoItem) => {
     all.push(todoItem)
   }
+
   const markAsComplete = (index) => {
     all[index].completed = true
   }
 
   const overdue = () => {
-    let condition1 = []
-    condition1 = all.filter(
+    const condition1 = all.filter(
       (event) => event.dueDate < formattedDate(new Date())
     )
     return condition1
   }
 
   const dueToday = () => {
-    let condition2 = []
-    condition2 = all.filter(
+    const condition2 = all.filter(
       (event) => event.dueDate === formattedDate(new Date())
     )
     return condition2
   }
 
   const dueLater = () => {
-    let condition3 = []
-    condition3 = all.filter(
+    const condition3 = all.filter(
       (event) => event.dueDate > formattedDate(new Date())
     )
     return condition3
@@ -37,7 +43,7 @@ const todoList = () => {
       .map(
         (todo) =>
           `[${todo.completed ? 'x' : ' '}] ${todo.title} ${
-            todo.dueDate !== formattedDate(new Date()) ? todo.dueDate : ''
+            todo.dueDate ? todo.dueDate : ''
           }`
       )
       .join('\n')
